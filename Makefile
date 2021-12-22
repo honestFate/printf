@@ -5,7 +5,7 @@ C = clang
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS =	ft_printf.c numeric_conversations.c buffer_manager.c
+SRCS =	ft_printf.c numeric_conversions.c buffer_manager.c
 
 OBJ = $(patsubst %.c,%.o,$(SRCS))
 
@@ -14,6 +14,8 @@ D_FILES = $(patsubst %.c,%.d,$(SRCS))
 all : $(NAME)
 
 $(NAME) : $(OBJ)
+	$(MAKE) -C ./libft
+	cp libft/libft.a $(NAME)
 	ar rcs $(NAME) $?
 
 %.o : %.c

@@ -11,7 +11,7 @@ t_buff	*ft_create_buff(void)
 
 void	ft_print_buff(t_buff *buff)
 {
-	write(STDOUT_FILENO, &(buff->buffer[0]), buff->b_start + 1);
+	write(STDOUT_FILENO, &(buff->buffer[0]), buff->b_start);
 	buff->b_start = 0;
 }
 
