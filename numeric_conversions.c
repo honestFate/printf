@@ -1,4 +1,4 @@
-#include "headers/printf.h"
+#include "ft_printf.h"
 
 static char	*ft_reverse(char *s)
 {
@@ -46,37 +46,27 @@ int	ft_puthex_buff(t_buff *buff, unsigned int n, int base, char c)
 
 int	ft_putint_buff(t_buff *buff, int n)
 {
+	char	*digit;
 	int		printed;
-	int		digit;
-	char	*dec;
 
-	printed = 0;
-	dec = (char *) malloc(11);
-	if (!dec)
-		return (printed);
-	while (n != 0)
-	{
-		digit = n % 10;
-		dec[printed] = digit + '0';
-		n /= 10;
-		printed++;
-	}
-	dec[printed] = '\0';
-	ft_putstr_buff(buff, ft_reverse(dec));
-	free(dec);
+	digit = ft_itoa(n);
+	printed = ft_putstr_buff(buff, digit);
+	free(digit);
 	return (printed);
 }
 
 int	ft_putptr_buff(t_buff *buff, long long int n)
 {
-	int		printed;
-	int		digit;
-	char	*hex;
+	int						printed;
+	unsigned long int		digit;
+	char					*hex;
 
 	printed = 0;
-	hex = (char *) malloc(16);
+	hex = (char *) malloc(20);
 	if (!hex)
 		return (printed);
+	if (n == 0)
+		hex[printed++] = '0';
 	while (n != 0)
 	{
 		digit = n % 16;

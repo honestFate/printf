@@ -1,4 +1,4 @@
-#include "headers/printf.h"
+#include "ft_printf.h"
 
 int	ft_check_conversation(const char *format, t_buff *buff, va_list ap)
 {
@@ -54,27 +54,3 @@ int	ft_printf(const char *format, ...)
 	va_end(ap);
 	return (printed);
 }
-/*
-int	main(void)
-{
-	int	x;
-	int	t;
-
-	x = 10;
-	//t = printf("test c - %10c\n", 'a');
-	//printf("%d", t);
-	t = printf("test %i %x %p\n", 44, 44, &x);
-	printf("%d\n", t);
-	t = ft_printf("test %i %x %p\n", 44, 44, &x);
-	printf("%d\n", t);
-	printf("test s - %10s\n", "abc");
-	printf("test p - %10p\n", &x);
-	printf("test d - % -12d*\n", -10);
-	printf("test i - %+10.10i\n", 10);
-	printf("test u - %u \n", 10);
-	printf("test x - %x\n", x);
-	printf("test X - %X\n", x);
-	printf("test %% - % %\n");
-	return (0);
-}
-*/

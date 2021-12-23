@@ -1,4 +1,4 @@
-#include "headers/printf.h"
+#include "ft_printf.h"
 
 t_buff	*ft_create_buff(void)
 {
@@ -28,6 +28,8 @@ int	ft_putstr_buff(t_buff *buff, const char *str)
 {
 	int	printed;
 
+	if (!str)
+		return (ft_putstr_buff(buff, "(null)"));
 	printed = 0;
 	while (*str)
 	{
