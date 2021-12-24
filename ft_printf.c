@@ -36,7 +36,7 @@ int	ft_format(const char *format, va_list ap)
 			printed += ft_putchar_buff(buff, *format);
 		format++;
 	}
-	if (buff->b_start)
+	if (buff->b_start <= BUFF_SIZE - 1)
 		ft_print_buff(buff);
 	free(buff);
 	return (printed);

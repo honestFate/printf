@@ -18,7 +18,7 @@ static char	*ft_reverse(char *s)
 	return (s);
 }
 
-int	ft_puthex_buff(t_buff *buff, unsigned int n, int base, char c)
+int	ft_puthex_buff(t_buff *buff, unsigned long long int n, int base, char c)
 {
 	int		printed;
 	int		digit;
@@ -28,6 +28,8 @@ int	ft_puthex_buff(t_buff *buff, unsigned int n, int base, char c)
 	hex = (char *) malloc(11);
 	if (!hex)
 		return (printed);
+	if (n == 0)
+		hex[printed++] = '0';
 	while (n != 0)
 	{
 		digit = n % base;
@@ -41,6 +43,7 @@ int	ft_puthex_buff(t_buff *buff, unsigned int n, int base, char c)
 	hex[printed] = '\0';
 	ft_putstr_buff(buff, ft_reverse(hex));
 	free(hex);
+	//printf("%d\n", printed);
 	return (printed);
 }
 
@@ -55,10 +58,10 @@ int	ft_putint_buff(t_buff *buff, int n)
 	return (printed);
 }
 
-int	ft_putptr_buff(t_buff *buff, long long int n)
+int	ft_putptr_buff(t_buff *buff, unsigned long long int n)
 {
 	int						printed;
-	unsigned long int		digit;
+	long long int			digit;
 	char					*hex;
 
 	printed = 0;
