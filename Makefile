@@ -5,7 +5,8 @@ C = clang
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS =	ft_printf.c numeric_conversions.c buffer_manager.c
+SRCS =	ft_printf.c numeric_conversions.c buffer_manager.c\
+		libft/ft_itoa.c libft/ft_strlen.c
 
 OBJ = $(patsubst %.c,%.o,$(SRCS))
 
@@ -15,7 +16,6 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 	$(MAKE) -C ./libft
-	cp libft/libft.a $(NAME)
 	ar rcs $(NAME) $?
 
 %.o : %.c

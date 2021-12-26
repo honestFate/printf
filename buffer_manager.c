@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   buffer_manager.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ndillon <ndillon@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/26 15:53:35 by ndillon           #+#    #+#             */
+/*   Updated: 2021/12/26 15:53:36 by ndillon          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 t_buff	*ft_create_buff(void)
@@ -11,9 +23,6 @@ t_buff	*ft_create_buff(void)
 
 void	ft_print_buff(t_buff *buff)
 {
-	/*write(STDOUT_FILENO, "full buff - ", 12);
-	write(STDOUT_FILENO, &(buff->buffer[0]), BUFF_SIZE);
-	write(STDOUT_FILENO, "\n", 1);*/
 	write(STDOUT_FILENO, &(buff->buffer[0]), buff->b_start);
 	buff->b_start = 0;
 }
@@ -43,6 +52,5 @@ int	ft_putstr_buff(t_buff *buff, const char *str)
 		str++;
 		printed++;
 	}
-	//printf("putstr - %d\n", printed);
 	return (printed);
 }

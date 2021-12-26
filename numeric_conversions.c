@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   numeric_conversions.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ndillon <ndillon@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/26 15:53:57 by ndillon           #+#    #+#             */
+/*   Updated: 2021/12/26 16:17:50 by ndillon          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 static char	*ft_reverse(char *s)
@@ -18,10 +30,28 @@ static char	*ft_reverse(char *s)
 	return (s);
 }
 
+int	ft_htoa(char *s, unsigned long long n, int base, char c)
+{
+	long long int	digit;
+	int				printed;
+
+	printed = 0;
+	while (n != 0)
+	{
+		digit = n % base;
+		if (digit > 9)
+			s[printed] = digit - 10 + c;
+		else
+			s[printed] = digit + '0';
+		n /= base;
+		printed++;
+	}
+	return (printed);
+}
+
 int	ft_puthex_buff(t_buff *buff, unsigned long long int n, int base, char c)
 {
 	int		printed;
-	int		digit;
 	char	*hex;
 
 	printed = 0;
@@ -30,20 +60,10 @@ int	ft_puthex_buff(t_buff *buff, unsigned long long int n, int base, char c)
 		return (printed);
 	if (n == 0)
 		hex[printed++] = '0';
-	while (n != 0)
-	{
-		digit = n % base;
-		if (digit > 9)
-			hex[printed] = digit - 10 + c;
-		else
-			hex[printed] = digit + '0';
-		n /= base;
-		printed++;
-	}
+	printed += ft_htoa(hex, n, base, c);
 	hex[printed] = '\0';
 	ft_putstr_buff(buff, ft_reverse(hex));
 	free(hex);
-	//printf("%d\n", printed);
 	return (printed);
 }
 
@@ -61,7 +81,6 @@ int	ft_putint_buff(t_buff *buff, int n)
 int	ft_putptr_buff(t_buff *buff, unsigned long long int n)
 {
 	int						printed;
-	long long int			digit;
 	char					*hex;
 
 	printed = 0;
@@ -70,16 +89,7 @@ int	ft_putptr_buff(t_buff *buff, unsigned long long int n)
 		return (printed);
 	if (n == 0)
 		hex[printed++] = '0';
-	while (n != 0)
-	{
-		digit = n % 16;
-		if (digit > 9)
-			hex[printed] = digit - 10 + 'a';
-		else
-			hex[printed] = digit + '0';
-		n /= 16;
-		printed++;
-	}
+	printed = ft_htoa(hex, n, 16, 'a');
 	hex[printed++] = 'x';
 	hex[printed++] = '0';
 	hex[printed] = '\0';
