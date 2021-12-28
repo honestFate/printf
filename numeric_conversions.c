@@ -6,7 +6,7 @@
 /*   By: ndillon <ndillon@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 15:53:57 by ndillon           #+#    #+#             */
-/*   Updated: 2021/12/26 16:17:50 by ndillon          ###   ########.fr       */
+/*   Updated: 2021/12/28 15:45:46 by ndillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	ft_putptr_buff(t_buff *buff, unsigned long long int n)
 		return (printed);
 	if (n == 0)
 		hex[printed++] = '0';
-	printed = ft_htoa(hex, n, 16, 'a');
+	printed += ft_htoa(hex, n, 16, 'a');
 	hex[printed++] = 'x';
 	hex[printed++] = '0';
 	hex[printed] = '\0';

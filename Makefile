@@ -15,7 +15,6 @@ D_FILES = $(patsubst %.c,%.d,$(SRCS))
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(MAKE) -C ./libft
 	ar rcs $(NAME) $?
 
 %.o : %.c
@@ -24,14 +23,11 @@ $(NAME) : $(OBJ)
 include $(wildcard $(D_FILES))
 
 clean :
-	@rm -f $(OBJ) $(OBJ_B) $(D_FILES)
+	@rm -f $(OBJ) $(D_FILES)
 
 fclean : clean
 	@rm -f $(NAME)
 
 re : fclean all
 
-bonus :
-	@make OBJ="$(OBJ_B)" all
-
-.PHONY : all clean fclean re bonus
+.PHONY : all clean fclean re
